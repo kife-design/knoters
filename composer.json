@@ -7,13 +7,19 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "alaouy/youtube": "dev-master"
+        "alaouy/youtube": "dev-master",
+        "vinkla/vimeo": "^2.1@dev",
+        "webpatser/laravel-uuid": "2.*",
+        "league/fractal": "0.12.*",
+        "laracasts/utilities": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "~2.1",
+        "skagarwal/reflection": "1.0.3",
+        "itsgoingd/clockwork": "~1.8"
     },
     "autoload": {
         "classmap": [
@@ -21,7 +27,10 @@
         ],
         "psr-4": {
             "Knoters\\": "app/"
-        }
+        },
+        "files": [
+            "app/Utilities/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

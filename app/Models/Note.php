@@ -6,7 +6,7 @@ class Note extends BaseModel
     protected $table = 'notes';
     public $timestamps = true;
     protected $guarded = ['id'];
-    protected $softDelete = false;
+    protected $softDelete = true;
 
     protected $appends = ['x', 'y'];
 
@@ -15,9 +15,9 @@ class Note extends BaseModel
         return $this->hasMany('Knoters\Models\NoteParameter');
     }
 
-    public function upload()
+    public function project()
     {
-        return $this->belongsTo('Knoters\Models\Upload');
+        return $this->belongsTo(Project::class);
     }
 
     public function asset()
@@ -25,14 +25,19 @@ class Note extends BaseModel
         return $this->belongsTo('Knoters\Models\Asset');
     }
 
-    public function sender()
+    public function author()
     {
-        return $this->belongsTo('Knoters\Models\Email', 'from_id');
+        return $this->belongsTo('Knoters\Models\User', 'from_id');
     }
 
     public function replies()
     {
         return $this->hasMany('Knoters\Models\Reply');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('Knoters\Models\NoteType', 'note_type_id');
     }
 
     public function getXAttribute()

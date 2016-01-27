@@ -6,20 +6,14 @@
  */
 interface AssetRepository extends AbstractRepository
 {
-    /**
-     * Find a colection item by its key
-     * @param $key
-     * @return mixed
-     */
-    public function findByKey($key);
 
 
     /**
-     * Gets a collection of assets by a given upload id
+     * Gets a collection of assets by a given project id
      *
-     * @param $uploadId
+     * @param $projectId
      * @param $with
      * @return mixed
      */
-    public function getByUploadId($uploadId, $with);
+    public function getByProjectId($projectId, $with);
 }

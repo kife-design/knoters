@@ -38,13 +38,13 @@ class Asset extends BaseModel
     protected $appends = array('large_asset_path', 'small_asset_path');
 
     /**
-     * The upload that is attached to this asset
+     * The project that is attached to this asset
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function upload()
+    public function project()
     {
-        return $this->belongsTo('Knoters\Models\Upload');
+        return $this->belongsTo('Knoters\Models\Project');
     }
 
     /**
@@ -90,8 +90,8 @@ class Asset extends BaseModel
      */
     public function getSourceAttribute()
     {
-        $upload = $this->upload->key;
-        return '/uploads/' . $upload;
+        $project = $this->project->key;
+        return '/projects/' . $project;
     }
 
     public function isSnapshot()
@@ -145,6 +145,6 @@ class Asset extends BaseModel
             return $this->source . '/' . $type . '/' . $name;
         }
 
-        return $this->upload->uploadPath() . '/' . $type . '/' . $name;
+        return $this->project->projectPath() . '/' . $type . '/' . $name;
     }
 }

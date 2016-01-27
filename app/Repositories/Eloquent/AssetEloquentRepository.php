@@ -13,27 +13,17 @@ class AssetEloquentRepository extends AbstractEloquentRepository implements Asse
     }
 
     /**
-     * Find a colection item by its key
-     * @param $key
-     * @return mixed
-     */
-    public function findByKey($key)
-    {
-        return $this->model->where('key', '=', $key)->first();
-    }
-
-    /**
-     * Gets a collection of assets by a given upload id
+     * Gets a collection of assets by a given project id
      *
-     * @param $uploadId
+     * @param $projectId
      * @param $with
      * @return mixed
      */
-    public function getByUploadId($uploadId, $with)
+    public function getByProjectId($projectId, $with)
     {
         $query = $this->make($with);
 
-        return $query->where('upload_id', '=', $uploadId)->get();
+        return $query->where('project_id', '=', $projectId)->get();
     }
 
 

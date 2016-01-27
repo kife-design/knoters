@@ -3,9 +3,8 @@ namespace Knoters\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Knoters\Http\Requests\NewSourceRequest;
-use Knoters\Services\SourceHandler;
+use Knoters\Services\Sources\ProjectPersister;
 
 class SourceController extends Controller
 {
@@ -19,10 +18,10 @@ class SourceController extends Controller
         $this->request = $request;
     }
 
-    public function store(NewSourceRequest $request, SourceHandler $handler)
+    public function store(NewSourceRequest $request, ProjectPersister $persister)
     {
         try {
-            $handler->handle($this->request->all());
+            $persister->persist($this->request->all());
         } catch (Exception $e) {
             throw $e;
         }

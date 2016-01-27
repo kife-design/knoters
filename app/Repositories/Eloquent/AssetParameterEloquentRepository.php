@@ -23,7 +23,6 @@ class AssetParameterEloquentRepository extends AbstractEloquentRepository implem
         try {
             foreach ($data as $key => $item) {
                 $saved = $this->store(array(
-                    'asset_id' => $id,
                     'name' => $key,
                     'value' => $item
                 ));

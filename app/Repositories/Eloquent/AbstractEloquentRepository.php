@@ -10,25 +10,25 @@ use Illuminate\Database\Eloquent\Collection;
 class AbstractEloquentRepository implements AbstractRepository
 {
 
-	/**
-	 * Returns all instances
-	 *
-	 * @return Collection
-	 */
+    /**
+     * Returns all instances
+     *
+     * @return Collection
+     */
     public function all()
     {
         return $this->model->all();
     }
 
 
-	/**
-	 * Returns all instances with pagination
-	 *
-	 * @param $itemsPerPage
-	 *
-	 * @return mixed
-	 * @internal param $count
-	 */
+    /**
+     * Returns all instances with pagination
+     *
+     * @param $itemsPerPage
+     *
+     * @return mixed
+     * @internal param $count
+     */
     public function allByPagination($itemsPerPage)
     {
         return $this->model->paginate($itemsPerPage);
@@ -40,7 +40,7 @@ class AbstractEloquentRepository implements AbstractRepository
      *
      * @param  $id
      * @param  array $with
-     * @param  null  $columns
+     * @param  null $columns
      * @return mixed
      */
     public function find($id, $with = [], $columns = null)
@@ -65,15 +65,20 @@ class AbstractEloquentRepository implements AbstractRepository
     /**
      * gets a collection item by a given key
      *
-     * @param  $key
-     * @param  $value
+     * @param  $search
      * @param  array $with
      * @param  array $columns
      * @return mixed
      */
-    public function getFirstBy($key, $value, array $with = [], array $columns = null)
+    public function findBy($search = [], array $with = [], array $columns = null)
     {
-        return $this->make($with)->where($key, '=', $value)->first($columns);
+        $resources = $this->make($with);
+
+        foreach ($search as $key => $value) {
+            $resources->where($key, '=', $value);
+        }
+
+        return $resources->first($columns);
     }
 
     /**
@@ -94,7 +99,7 @@ class AbstractEloquentRepository implements AbstractRepository
      * lists items by a given key
      *
      * @param  $value
-     * @param  null  $key
+     * @param  null $key
      * @return mixed
      */
     public function lists($value, $key = null)
@@ -122,13 +127,13 @@ class AbstractEloquentRepository implements AbstractRepository
      * returns a field from the model by a given key and value
      *
      * @param  $key
-     * @param  $id
+     * @param  $value
      * @param  $pluck
      * @return mixed
      */
-    public function pluckBy($key, $id, $pluck)
+    public function pluckBy($key, $value, $pluck)
     {
-        return $this->model->where($key, '=', $id)->pluck($pluck);
+        return $this->model->where($key, '=', $value)->pluck($pluck);
     }
 
     /**
@@ -158,20 +163,20 @@ class AbstractEloquentRepository implements AbstractRepository
 
     /**
      * Updates an DB record with the given instance
-	 *
-	 * @param $id
-	 * @param $data
-	 *
-	 * @return
-	 * @throws Exception
-	 */
-	public function update($id, $data)
+     *
+     * @param $id
+     * @param $data
+     *
+     * @return
+     * @throws Exception
+     */
+    public function update($id, $data)
     {
         $model = $this->model->find($id);
 
         $updated = $model->update($data);
 
-        if (! $updated) {
+        if (!$updated) {
             throw new Exception('Failed to update the model');
         }
 
@@ -234,18 +239,18 @@ class AbstractEloquentRepository implements AbstractRepository
     /**
      * Get Results by Page
      *
-     * @param  int   $page
-     * @param  int   $limit
+     * @param  int $page
+     * @param  int $limit
      * @param  array $with
      * @return StdClass Object with $items and $totalItems for pagination
      */
     public function getByPage($page = 1, $limit = 10, $with = [])
     {
-        $result             = new StdClass;
-        $result->page       = $page;
-        $result->limit      = $limit;
+        $result = new StdClass;
+        $result->page = $page;
+        $result->limit = $limit;
         $result->totalItems = 0;
-        $result->items      = [];
+        $result->items = [];
 
         $query = $this->make($with);
 
@@ -254,7 +259,7 @@ class AbstractEloquentRepository implements AbstractRepository
             ->get();
 
         $result->totalItems = $this->model->count();
-        $result->items      = $model->all();
+        $result->items = $model->all();
 
         return $result;
     }

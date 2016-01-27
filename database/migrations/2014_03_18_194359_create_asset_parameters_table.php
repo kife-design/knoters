@@ -9,7 +9,6 @@ class CreateAssetParametersTable extends Migration {
 	{
 		Schema::create('asset_parameters', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('asset_id')->unsigned();
 			$table->string('name', 250);
 			$table->string('value', 250);
 			$table->timestamps();

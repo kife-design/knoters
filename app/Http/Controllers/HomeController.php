@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Knoters\Http\Requests;
 use Knoters\Http\Requests\NewSourceRequest;
 use Knoters\Repositories\SourceRepository;
-use Knoters\Repositories\UploadRepository;
+use Knoters\Repositories\ProjectRepository;
 
 class HomeController extends Controller
 {
@@ -34,26 +34,25 @@ class HomeController extends Controller
     public function index(SourceRepository $resourceRepository)
     {
         try {
+            $resources = $resourceRepository->all()->groupBy('type');
 
+            return view('home', compact('resources'));
         } catch (Exception $e) {
             throw $e;
         }
-        $resources = $resourceRepository->all()->groupBy('type');
-
-        return view('home', compact('resources'));
     }
 
     /**
      * Submits the new source for processing
      *
      * @param NewSourceRequest $request
-     * @param UploadRepository $uploadRepository
+     * @param ProjectRepository $projectRepository
      * @throws Exception
      */
-    public function submitSource(NewSourceRequest $request, UploadRepository $uploadRepository)
+    public function submitSource(NewSourceRequest $request, ProjectRepository $projectRepository)
     {
         try {
-            $uploadRepository->store($this->request->except(['email', 'receivers']));
+            $projectRepository->store($this->request->except(['email', 'receivers']));
         } catch (Exception $e) {
             throw $e;
         }

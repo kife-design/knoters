@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Collection;
 interface AbstractRepository
 {
 
-	/**
-	 * Returns all instances
-	 *
-	 * @return Collection
-	 */
+    /**
+     * Returns all instances
+     *
+     * @return Collection
+     */
     public function all();
 
 
@@ -35,7 +35,7 @@ interface AbstractRepository
      *
      * @param  $id
      * @param  array $with
-     * @param  null  $columns
+     * @param  null $columns
      * @return mixed
      */
     public function find($id, $with = [], $columns = null);
@@ -51,13 +51,12 @@ interface AbstractRepository
     /**
      * gets a collection item by a given key
      *
-     * @param  $key
-     * @param  $value
+     * @param  $search
      * @param  array $with
      * @param  array $columns
      * @return mixed
      */
-    public function getFirstBy($key, $value, array $with = [], array $columns = null);
+    public function findBy($search = [], array $with = [], array $columns = null);
 
     /**
      * gets a collection by a given key
@@ -74,7 +73,7 @@ interface AbstractRepository
      * lists items by a given key
      *
      * @param  $value
-     * @param  null  $key
+     * @param  null $key
      * @return mixed
      */
     public function lists($value, $key = null);
@@ -93,11 +92,11 @@ interface AbstractRepository
      * returns a field from the model by a given key and value
      *
      * @param  $key
-     * @param  $id
+     * @param  $value
      * @param  $pluck
      * @return mixed
      */
-    public function pluckBy($key, $id, $pluck);
+    public function pluckBy($key, $value, $pluck);
 
     /**
      * returns an array with a set of values by a given key

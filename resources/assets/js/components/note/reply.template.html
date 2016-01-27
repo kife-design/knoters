@@ -1,0 +1,4 @@
+<div class="reply">
+    <div class="reply_message" v-html="reply.message" v-on="blur: update()" contenteditable="true"></div>
+    <p class="reply_author text-right">{{ reply.author.data.email }}</p>
+</div>

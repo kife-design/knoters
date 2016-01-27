@@ -7,9 +7,14 @@ class NoteParameterEloquentRepository extends AbstractEloquentRepository impleme
 {
     protected $model;
 
-    function __construct(NoteParameter $model)
+    public function __construct(NoteParameter $model)
     {
         $this->model = $model;
+    }
+
+
+    public function findByNoteAndName($noteId, $name) {
+        return $this->model->where('note_id', $noteId)->where('name', $name)->first();
     }
 
     /**

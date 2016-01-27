@@ -24,14 +24,14 @@ class EmailEloquentRepository extends AbstractEloquentRepository implements Emai
     }
 
     /**
-     * Return an upload collection item by an email
+     * Return an project collection item by an email
      *
      * @param $key
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getUploadByEmailUrl($key)
+    public function getProjectByEmailUrl($key)
     {
-        return Email::with(array('uploads' => function($query) use ($key) {
+        return Email::with(array('projects' => function($query) use ($key) {
             $query->wherePivot('url', $key);
         }))->get();
     }

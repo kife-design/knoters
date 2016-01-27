@@ -10,7 +10,7 @@ class CreateTrafficTable extends Migration {
 		Schema::create('traffic', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('key', 100);
-			$table->integer('upload_id')->unsigned();
+			$table->integer('project_id')->unsigned();
 			$table->integer('from_id')->unsigned()->nullable();
 			$table->integer('to_id')->unsigned();
 			$table->text('message')->nullable();

@@ -9,7 +9,7 @@ class CreateAssetsTable extends Migration {
 	{
 		Schema::create('assets', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('upload_id')->unsigned();
+			$table->integer('project_id')->unsigned();
 			$table->string('name', 255);
             $table->string('key', 100);
 			$table->timestamps();

@@ -8,7 +8,8 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form class="form-horizontal" id="upload-form" action="submit">
+            <form class="form-horizontal" method="POST" id="project-form" action="submit">
+                {!! csrf_field() !!}
                 <div class="form-group">
                     <label for="emailInput" class="col-md-3 control-label">Your email</label>
                     <div class="col-md-9">
@@ -37,12 +38,13 @@
                 <div class="form-group">
                     <label for="pathInput" class="col-md-3 control-label">Url:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="path" id="pathInput" value="https://www.youtube.com/watch?v=xg7sptEx0Ms" placeholder="Link to source:">
+                       <!-- <input type="text" class="form-control" name="path" id="pathInput" value="https://www.youtube.com/watch?v=xg7sptEx0Ms" placeholder="Link to source:"> -->
+                        <input type="text" class="form-control" name="path" id="pathInput" value="https://vimeo.com/81160524" placeholder="Link to source:">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" id="upload-button" class="btn btn-default">Upload</button>
+                        <button type="submit" id="submit-button" class="btn btn-default">Submit</button>
                     </div>
                 </div>
             </form>

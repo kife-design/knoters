@@ -1,0 +1,24 @@
+<div class="note">
+    <button v-on="click: remove()" type="button" class="close note_delete" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p class="note_date">{{ note.humanPostDate }}</p>
+    <div class="note_message" v-html="note.message" v-on="blur: saveMessage()" contenteditable="true"></div>
+    <p class="note_author">{{ note.postAuthor }}</p>
+    <div class="replyContainer">
+        <reply v-repeat="reply: note.replies.data"></reply>
+    </div>
+    <div class="note_actions clearfix btn-group">
+        <button v-on="click: upload" class="btn btn-sm btn-upload btn-default"><i class="fa fa-upload"></i></button>
+        <!-- Single button -->
+        <div class="btn-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-sm btn-type btn-transparent pull-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bullseye type-{{ note.type }}"></i></button>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="#" v-on="click: setType('info')"><i class="pull-right fa fa-bullseye type-info"></i>Info</a></li>
+                    <li><a href="#" v-on="click: setType('success')"><i class="pull-right fa fa-bullseye type-success"></i> Success</a></li>
+                    <li><a href="#" v-on="click: setType('error')"><i class="pull-right fa fa-bullseye type-error"></i> Error</a></li>
+                </ul>
+            </div>
+            <button v-on="click: reply" class="btn btn-sm btn-reply btn-success"><i class="fa fa-reply"></i></button>
+        </div>
+    </div>
+</div>

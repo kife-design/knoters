@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Knoters\Events\SomeEvent' => [
-            'Knoters\Listeners\EventListener',
+        'Knoters\Events\SourceWasCreated' => [
+            'Knoters\Listeners\NotifyUsers',
         ],
     ];
 

@@ -9,11 +9,11 @@ class CreateNotesTable extends Migration {
 	{
 		Schema::create('notes', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('uuid', 36);
             $table->integer('index')->unsigned();
-            $table->string('key', 100);
-			$table->integer('upload_id')->unsigned();
-			$table->integer('asset_id')->unsigned();
+			$table->integer('project_id')->unsigned();
 			$table->integer('from_id')->unsigned();
+			$table->integer('note_type_id')->unsigned();
 			$table->text('message')->nullable();
 			$table->timestamps();
             $table->softDeletes();

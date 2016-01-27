@@ -2,7 +2,7 @@
 
 interface EmailRepository extends AbstractRepository
 {
-    public function getUploadByEmailUrl($url);
+    public function getProjectByEmailUrl($url);
 
     public function findByEmail($email);
 

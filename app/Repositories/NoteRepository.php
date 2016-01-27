@@ -3,37 +3,51 @@
 interface NoteRepository extends AbstractRepository
 {
     /**
-     * Get a collection Item by id
+     * Get a collection of resources by the project id
      *
-     * @param $uploadId
+     * @param $projectId
+     * @param array $relations
+     * @param array $columns
      * @return mixed
      */
-    public function getByUploadId($uploadId);
+    public function getByProjectId($projectId,  $relations = [], $columns = ['*']);
+
 
     /**
-     * Get a collection item by key and index
+     * Get a collection of resources by the project id and an set of searchvalues
      *
-     * @param $key
+     * @param $projectId
+     * @param $searchvalues
+     * @param array $relations
+     * @param array $columns
      * @return mixed
      */
-    public function findByKey($key, $columns = null);
+    public function getByProjectIdAndSearch($projectId, $searchvalues, $relations = [], $columns = ['*']);
+
+    /**
+     * Find a resource by its uuid
+     *
+     * @param $uuid
+     * @param $relations
+     * @param $columns
+     * @return mixed
+     */
+    public function findByUuid($uuid, $relations, $columns);
 
     /**
      * Edit a DB entry by key and index
      *
      * @param $assetKey
-     * @param $index
      * @param $params
      * @return mixed
      */
     public function editByKey($assetKey, $params);
 
     /**
-     * Delete a DB entry by its id and the uploadkey
+     * Delete a DB entry by its uuid
      *
-     * @param $noteId
-     * @param $uploadKey
+     * @param $uuid
      * @return mixed
      */
-    public function deleteByIdAndUploadKey($noteId, $uploadKey);
+    public function deleteByUuid($uuid);
 }

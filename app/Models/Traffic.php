@@ -7,9 +7,9 @@ class Traffic extends BaseModel {
 	public $timestamps = true;
 	protected $softDelete = false;
 
-	public function upload()
+	public function project()
 	{
-		return $this->hasOne('Knoters\Models\Upload');
+		return $this->hasOne('Knoters\Models\Project');
 	}
 
 	public function sender()

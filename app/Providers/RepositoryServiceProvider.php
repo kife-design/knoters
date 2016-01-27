@@ -62,18 +62,23 @@ class RepositoryServiceProvider extends ServiceProvider {
         );
 
         $this->app->bind(
-            'Knoters\Repositories\UploadRepository',
-            'Knoters\Repositories\Eloquent\UploadEloquentRepository'
-        );
-
-        $this->app->bind(
-            'Knoters\Repositories\UploadEmailRepository',
-            'Knoters\Repositories\Eloquent\UploadEmailEloquentRepository'
+            'Knoters\Repositories\ProjectRepository',
+            'Knoters\Repositories\Eloquent\ProjectEloquentRepository'
         );
 
         $this->app->bind(
             'Knoters\Repositories\SourceRepository',
             'Knoters\Repositories\Eloquent\SourceEloquentRepository'
+        );
+
+        $this->app->bind(
+            'Knoters\Repositories\ProjectUserRepository',
+            'Knoters\Repositories\Eloquent\ProjectUserEloquentRepository'
+        );
+
+        $this->app->bind(
+            'Knoters\Repositories\UserRepository',
+            'Knoters\Repositories\Eloquent\UserEloquentRepository'
         );
     }
 

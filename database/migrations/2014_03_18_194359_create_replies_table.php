@@ -9,6 +9,7 @@ class CreateRepliesTable extends Migration {
 	{
 		Schema::create('replies', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('uuid', 36);
             $table->integer('index')->unsigned();
 			$table->integer('note_id')->unsigned();
 			$table->integer('from_id')->unsigned();
